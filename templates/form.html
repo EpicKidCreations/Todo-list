@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do list</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        p {
+            color:#ffffff;
+        }
+    </style>
+</head>
+<body>
+    <form action="/todo" method="post">
+        <p>To Do</p>
+        <input type="email" name="email" required placeholder="Enter a valid email address"></input>
+        <input type="text" name="task" required placeholder="Enter the Task"></input>
+        <input type="number" name="hour" required min="01" max="23" placeholder="Hour"></input>
+        <input type="number" name="minute" required min="00" max="59" placeholder="Minute">
+        <input type="number" name="year" required min="{{currentyear}}" max="9999" minlength="4" pattern="\d{4}" placeholder="Year">
+        <input type="number" name="month" min="01" max="12" required placeholder="Month">
+        <input type="number" name="day" required min="01" max="31" placeholder="Day">
+        <input type="hidden" name="variable" required min="01" max="31" placeholder="Day">
+        <input type="submit" value="submit"></input>
+    </form>
+</body>
+</html>
