@@ -11,6 +11,9 @@
         h3 {
             color:#fc0176;
         }
+        h2 {
+            color:#fc0176;
+        }
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
@@ -53,8 +56,7 @@
         <input type="text" name="task" required placeholder="Enter the Task"></input>
         <input type="number" name="hour" required min="01" max="23" placeholder="Hour"></input>
         <input type="number" name="minute" required min="00" max="59" placeholder="Minute">
-        <input type="number" name="year" required min="{{currentyear}}" max="9999" minlength="4" pattern="\d{4}" placeholder="Year">
-        <input type="number" name="month" min="01" max="12" required placeholder="Month">
+        <input type="month" name="month" min="01" max="12" required placeholder="Month">
         <input type="number" name="day" required step="01" min="01" max="31" placeholder="Day">
         <input type="hidden" name="variable" required min="01" max="31" placeholder="Day">
         <input type="submit" value="submit"></input>
@@ -62,16 +64,18 @@
     <div>
         <form action="/retrive" method="post">
           <h3><p>Retrieve saved events</p></h3>
-          <input type="email" name="email" placeholder="Enter a valid email address"></input>
+          <input type="email" name="email" required placeholder="Enter a valid email address"></input>
           <input type="submit" name ="submit" value="submit"></input>
-      <h3 id="data"><p>Your events</p></h3>
-      {%for row in raw%}
-          <h1><p>
-              {{ row["email"]}} has {{row["task"]}} due on {{row["month"]}} {{row["day"]}}, {{row["year"]}} at {{row["hour"]}}:{{row["minute"] }}
-          </p></h1>
+        </form>
+          <h3 id="data"><p>Your events</p></h3>
+      <form action="/delete" method=post>
+          {%for row in raw%}
+          <h2><p>
+              {{ row["email"]}} has {{row["task"]}} due on {{row["month"]}}-{{row["day"]}} at {{row["hour"]}}:{{row["minute"] }} <input type="checkbox" name="checkbox" value="{{row['id']}}">
+          </p></h2>
       {% endfor %}
-  </form>
+      <input type="submit" value="delete">
+    </form>
   </div>
-    <p>{{raw}}</p>
 </body>
 </html>
